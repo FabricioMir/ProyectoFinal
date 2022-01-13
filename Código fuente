@@ -1,0 +1,158 @@
+//import 'dart:html';
+import 'package:flutter/material.dart';
+//import 'package:comidas_tip/model/comida.dart';
+import 'package:flutter/cupertino.dart';
+
+void main() {
+  runApp(MaterialApp(home: MenuPage()));
+}
+
+//class IconHeader extends StatefulWidget {
+//@override
+//_IconHeader createState() => _IconHeader();
+//}
+class MenuPage extends StatefulWidget {
+  @override
+  _MenuPageState createState() => _MenuPageState();
+}
+
+class _MenuPageState extends State<MenuPage> {
+  final items = <herramienta>[
+    herramienta("cemento.png", 'Cemento tonelada', 'Cemento', 3500.00),
+    herramienta("Grava.png", 'Camión 6 metros cúbicos', 'Grava', 1800.00),
+    herramienta("Arena.png", 'Camión 6 metros cúbicos', 'Arena', 1800.00),
+    herramienta("Cal.jpg", 'Cal Hidratada 25 kg', 'Cal', 73.00),
+    herramienta(
+        "Yeso.png", 'Yeso Estandar 1.5kg Blanco Redimix', 'Yeso', 890.00),
+    herramienta("Varilla.jpg", 'Tonelada de Varilla', 'Varilla', 2400.00),
+    herramienta("Alambron.png", 'ALAMBRON 1/4' ' 1KG', 'Alambron', 29.00),
+    herramienta("Alambre.png", 'Alambre Recocido Calibre 24 por kilo',
+        'Alambre', 38.00),
+    herramienta(
+        "Anillo de hierro.jpg", 'Kilo de anillo', 'Anillo de hierro', 38.00),
+    herramienta(
+        "Tezontle.jpg", 'Camión con 6 metros cúbicos', 'Tezontle', 2400.00),
+    herramienta("Pala.png", 'Pala cuadrada 40 pulgadas', 'Pala', 305.00),
+    herramienta("cincel.jpg", 'Cincel SDS plano delgado', 'Cincel', 109.00),
+    herramienta("Tabique.png", 'Pieza de tabique', 'Tabique', 5.00),
+    herramienta(
+      "Segueta.png",
+      'Seguetas Bimetálica 18dpp Morse 100 pz',
+      'Segueta',
+      138.00,
+    ),
+    herramienta("Cortadora.png", 'Cortadora de azulejo',
+        'Cortadora', 279.00),
+    herramienta("Taladro.png", 'Taladro eléctrico', 'Taladro', 3100.00),
+    herramienta("Block.png", 'millar de Block', 'Block', 8500.00),
+    herramienta("Clavos.png", 'Kilo de clavos', 'Clavos', 38.00),
+    herramienta("Mortero.png", 'Tonelada de Mortero', 'Mortero', 14.00),
+    herramienta("Total.png", '', '', 25456),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.amber,
+        appBar: AppBar(title: const Text('  Herramientas de construcción'),backgroundColor: Colors.blueGrey,),
+        body: Stack(
+          children: [
+            Container(
+              margin: EdgeInsets.only(
+                top: size.height * 0.01,
+              ),
+              child: SafeArea(
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemCount: 20,
+                  itemBuilder: (BuildContext context, int i) {
+                    return Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25)),
+                      child: GestureDetector(
+                        onTap: (){
+                          do {
+                            print('Se agregó ' +
+                                '\$${items[i].priceherramienta}');
+                          }
+                          while(i<=19);
+                        },
+
+                      child: GestureDetector(
+                        onTap: (){
+                          do {
+                            print('Se agregó ' +
+                                '\$${items[i].priceherramienta}');
+                          }
+                          while(i==20);
+                          },
+
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('assets/' '${items[i].foto}', width: 100,),
+                          Text(
+                            '${items[i].nameherramienta}'.toUpperCase(),
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          Text(
+                            '${items[i].descriptionherramienta}',
+                            style: TextStyle(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.brown[600],
+                            ),
+                          ),
+                          Text(
+                            '\$${items[i].priceherramienta}',
+                            style: TextStyle(
+                              fontSize: 20.0,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.red[800],
+                            ),
+                          ),
+                        ],
+                      ),
+                      ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//-------------------------------------------------------------------
+
+class herramienta {
+  final String foto;
+  final String nameherramienta;
+  final String descriptionherramienta;
+  final double priceherramienta;
+  herramienta(this.foto, this.descriptionherramienta, this.nameherramienta,
+      this.priceherramienta);
+}
+
+//-----------------------------------------------------------------
+
+class _IconHeader extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('AppBar Demo'),
+      ),
+    );
+  }
+}
